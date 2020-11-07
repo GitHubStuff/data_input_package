@@ -1,0 +1,19 @@
+name: password_package
+description: General purpose widget for entering passwords.
+version: 0.0.1
+author: Steven Smith
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
