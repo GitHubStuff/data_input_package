@@ -1,5 +1,5 @@
-name: password_package_example
-description: Shows examples of a password widget.
+name: data_input_package_example
+description: Shows examples of a text input widget.
 #publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1

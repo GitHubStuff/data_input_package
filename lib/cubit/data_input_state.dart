@@ -1,8 +1,10 @@
 part of 'data_input_cubit.dart';
 
 enum DataInputBuildState {
-  ObscureTextState,
+  ClearInputState,
   DataInputInitial,
+  InputReadyState,
+  ObscureTextState,
 }
 
 @immutable

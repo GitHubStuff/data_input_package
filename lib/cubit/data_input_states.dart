@@ -10,3 +10,12 @@ class ObscureTextState extends DataInputState {
   @override
   List<Object> get props => [state, buildState];
 }
+
+class ClearInputState extends DataInputState {
+  const ClearInputState() : super(DataInputBuildState.ClearInputState);
+}
+
+class InputReadyState extends DataInputState {
+  final bool textHiddenState;
+  const InputReadyState(this.textHiddenState) : super(DataInputBuildState.InputReadyState);
+}
