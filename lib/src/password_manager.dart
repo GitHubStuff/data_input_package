@@ -27,7 +27,7 @@ class PasswordItem {
 }
 
 class PasswordManager {
-  //PasswordItem _passwordItem = PasswordItem();
+  // ignore: close_sinks
   final _controller = StreamController<PasswordItem>();
   final _passwordItem = PasswordItem();
 

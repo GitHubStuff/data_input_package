@@ -24,6 +24,15 @@ class _MyAppState extends State<MyApp> {
 class SubApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(child: Card(child: PasswordWidget()));
+    return Center(
+        child: Card(
+            child: PasswordWidget(
+      completion: (result) {
+        debugPrint('Result: $result');
+      },
+      callback: (text) {
+        debugPrint('Called: $text');
+      },
+    )));
   }
 }
