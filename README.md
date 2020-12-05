@@ -32,3 +32,5 @@ class DataInputWidget extends StatefulWidget {
 PASSWORD - Text is obscured unless the user taps/(long presses) the ***eye*** icon that will briefly display entry text. A double tap will toggle the obscuring feature.
 
 TEXT - The (X) icon will erase the current content of the field
+
+### Comment - Be kind to each other
