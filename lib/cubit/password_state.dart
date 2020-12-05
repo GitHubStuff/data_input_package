@@ -1,6 +1,7 @@
 part of 'password_cubit.dart';
 
 enum PasswordBuildState {
+  ObscureTextState,
   PasswordInitial,
 }
 

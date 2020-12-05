@@ -26,13 +26,14 @@ class SubApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: Card(
+            color: Colors.green,
             child: PasswordWidget(
-      completion: (result) {
-        debugPrint('Result: $result');
-      },
-      callback: (text) {
-        debugPrint('Called: $text');
-      },
-    )));
+              completion: (result) {
+                debugPrint('Result: $result');
+              },
+              callback: (text) {
+                debugPrint('Called: $text');
+              },
+            )));
   }
 }
