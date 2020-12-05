@@ -1,0 +1,4 @@
+enum DataInputType {
+  PasswordInput,
+  TextInput,
+}

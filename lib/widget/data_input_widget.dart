@@ -1,3 +1,4 @@
+import 'package:data_input_package/widget/widget_types.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../cubit/data_input_cubit.dart';
@@ -5,28 +6,33 @@ import '../cubit/data_input_cubit.dart';
 import 'observing_stateful_widget.dart';
 
 class DataInputWidget extends StatefulWidget {
+  final DataInputType dataInputType;
   final Function(String) callback;
   final Function(String) completion;
   final TextStyle textStyle;
+  final String hint;
   const DataInputWidget({
     Key key,
+    @required this.dataInputType,
     @required this.callback,
     @required this.completion,
+    this.hint,
     this.textStyle,
-  }) : super(key: key);
+  })  : assert(dataInputType != null),
+        super(key: key);
   @override
   _DataInputWidget createState() => _DataInputWidget();
 }
 
 class _DataInputWidget extends ObservingStatefulWidget<DataInputWidget> {
   TextEditingController _textEditingController = TextEditingController();
-  DataInputCubit _passwordCubit;
+  DataInputCubit _dataInputCubit;
   bool _shouldObscureText = true;
 
   @override
   void initState() {
     super.initState();
-    _passwordCubit = DataInputCubit();
+    _dataInputCubit = DataInputCubit();
   }
 
   @override
@@ -36,23 +42,29 @@ class _DataInputWidget extends ObservingStatefulWidget<DataInputWidget> {
   Widget build(BuildContext context) {
     final textStyle = widget.textStyle ?? TextStyle(fontSize: 24.0);
     return BlocBuilder<DataInputCubit, DataInputState>(
-      cubit: _passwordCubit,
-      builder: (context, passwordState) {
-        debugPrint('STATE: $passwordState');
-        switch (passwordState.buildState) {
+      cubit: _dataInputCubit,
+      builder: (context, inputState) {
+        switch (inputState.buildState) {
+          case DataInputBuildState.ClearInputState:
+            _textEditingController.text = '';
+            break;
+          case DataInputBuildState.InputReadyState:
+            _shouldObscureText = (inputState as InputReadyState).textHiddenState;
+            break;
           case DataInputBuildState.ObscureTextState:
-            _shouldObscureText = (passwordState as ObscureTextState).state;
+            _shouldObscureText = (inputState as ObscureTextState).state;
             break;
           case DataInputBuildState.DataInputInitial:
-            break;
+            _dataInputCubit.initialState(dataInputType: widget.dataInputType);
+            return Container();
         }
         return Focus(
             child: TextField(
               autocorrect: false,
               controller: _textEditingController,
               decoration: InputDecoration(
-                hintText: 'Password',
-                suffixIcon: _passwordCubit.gestureDetector(),
+                hintText: widget.hint,
+                suffixIcon: _dataInputCubit.gestureDetector(),
                 contentPadding: EdgeInsets.all(8.0),
               ),
               enableSuggestions: false,
@@ -63,7 +75,6 @@ class _DataInputWidget extends ObservingStatefulWidget<DataInputWidget> {
               style: textStyle,
             ),
             onFocusChange: (hasFocus) {
-              debugPrint('FOCUS $hasFocus');
               if (!hasFocus && widget.completion is Function) widget.completion(_textEditingController.text);
             });
       },
