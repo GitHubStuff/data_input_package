@@ -44,7 +44,6 @@ class _DataInputWidget extends ObservingStatefulWidget<DataInputWidget> {
     return BlocBuilder<DataInputCubit, DataInputState>(
       cubit: _dataInputCubit,
       builder: (context, inputState) {
-        debugPrint('STATE: $inputState');
         switch (inputState.buildState) {
           case DataInputBuildState.ClearInputState:
             _textEditingController.text = '';
@@ -76,7 +75,6 @@ class _DataInputWidget extends ObservingStatefulWidget<DataInputWidget> {
               style: textStyle,
             ),
             onFocusChange: (hasFocus) {
-              debugPrint('FOCUS $hasFocus');
               if (!hasFocus && widget.completion is Function) widget.completion(_textEditingController.text);
             });
       },
