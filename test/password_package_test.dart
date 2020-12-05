@@ -1,11 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:password_package/src/password_manager.dart';
-
 void main() {
   test('adds one to input values', () {
-    final state = PasswordState.hide;
-    expect(state, equals(PasswordState.hide));
+    // final state = PasswordState.hide;
+    // expect(state, equals(PasswordState.hide));
     // final calculator = Calculator();
     // expect(calculator.addOne(2), 3);
     // expect(calculator.addOne(-7), -6);
