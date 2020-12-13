@@ -33,4 +33,6 @@ PASSWORD - Text is obscured unless the user taps/(long presses) the ***eye*** ic
 
 TEXT - The (X) icon will erase the current content of the field
 
-### Comment - Be kind to each other
+## Conclusion
+
+Be kind to each other

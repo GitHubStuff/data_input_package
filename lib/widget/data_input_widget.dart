@@ -1,3 +1,7 @@
+// Copyright 2020 LTMM. All rights reserved.
+// Uses of this source code is governed by 'The Unlicense' that can be
+// found in the LICENSE file.
+
 import 'package:data_input_package/widget/widget_types.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
