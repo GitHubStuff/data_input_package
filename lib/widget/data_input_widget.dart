@@ -10,6 +10,7 @@ import '../cubit/data_input_cubit.dart';
 import 'observing_stateful_widget.dart';
 
 class DataInputWidget extends StatefulWidget {
+  final String startingText;
   final DataInputType dataInputType;
   final Function(String) callback;
   final Function(String) completion;
@@ -20,6 +21,7 @@ class DataInputWidget extends StatefulWidget {
     @required this.dataInputType,
     @required this.callback,
     @required this.completion,
+    this.startingText,
     this.hint,
     this.textStyle,
   })  : assert(dataInputType != null),
@@ -40,7 +42,9 @@ class _DataInputWidget extends ObservingStatefulWidget<DataInputWidget> {
   }
 
   @override
-  void afterFirstLayout(BuildContext context) {}
+  void afterFirstLayout(BuildContext context) {
+    if (widget.startingText != null) _textEditingController.text = widget.startingText;
+  }
 
   @override
   Widget build(BuildContext context) {

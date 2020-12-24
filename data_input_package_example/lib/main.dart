@@ -43,6 +43,7 @@ class SubApp extends StatelessWidget {
               debugPrint('Username: $text');
             },
             dataInputType: DataInputType.TextInput,
+            startingText: 'SampleText',
           ),
         ),
         Card(

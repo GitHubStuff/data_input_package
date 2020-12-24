@@ -1,11 +1,11 @@
 name: data_input_package
 description: General purpose widget for entering passwords and text
-version: 0.0.1
+version: 0.0.2
 author: Steven Smith
 
 environment:
-  sdk: ">=2.10.0 <3.0.0"
-  flutter: ">=1.22.0"
+  sdk: ">=2.10.4 <3.0.0"
+  flutter: ">=1.22.4"
 
 dependencies:
   flutter:
