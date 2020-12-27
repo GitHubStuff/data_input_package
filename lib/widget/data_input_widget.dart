@@ -5,9 +5,9 @@
 import 'package:data_input_package/widget/widget_types.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../cubit/data_input_cubit.dart';
+import 'package:theme_package/theme_package.dart';
 
-import 'observing_stateful_widget.dart';
+import '../cubit/data_input_cubit.dart';
 
 class DataInputWidget extends StatefulWidget {
   final String startingText;
@@ -16,6 +16,7 @@ class DataInputWidget extends StatefulWidget {
   final Function(String) completion;
   final TextStyle textStyle;
   final String hint;
+  final DataInputCubit dataInputCubit;
   const DataInputWidget({
     Key key,
     @required this.dataInputType,
@@ -24,6 +25,7 @@ class DataInputWidget extends StatefulWidget {
     this.startingText,
     this.hint,
     this.textStyle,
+    this.dataInputCubit,
   })  : assert(dataInputType != null),
         super(key: key);
   @override
@@ -38,11 +40,12 @@ class _DataInputWidget extends ObservingStatefulWidget<DataInputWidget> {
   @override
   void initState() {
     super.initState();
-    _dataInputCubit = DataInputCubit();
+    Log.M('initState CUBIT HASH: ${widget.dataInputCubit?.hashCode}');
+    _dataInputCubit = widget.dataInputCubit ?? DataInputCubit();
   }
 
   @override
-  void afterFirstLayout(BuildContext context) {
+  void afterFirstLayoutComplete(BuildContext context) {
     if (widget.startingText != null) _textEditingController.text = widget.startingText;
   }
 
@@ -66,21 +69,25 @@ class _DataInputWidget extends ObservingStatefulWidget<DataInputWidget> {
             _dataInputCubit.initialState(dataInputType: widget.dataInputType);
             return Container();
         }
+        debugPrint('..... textController ${_textEditingController.text}');
         return Focus(
-            child: TextField(
-              autocorrect: false,
-              controller: _textEditingController,
-              decoration: InputDecoration(
-                hintText: widget.hint,
-                suffixIcon: _dataInputCubit.gestureDetector(),
-                contentPadding: EdgeInsets.all(8.0),
+            child: Directionality(
+              textDirection: TextDirection.rtl,
+              child: TextField(
+                autocorrect: false,
+                controller: _textEditingController,
+                decoration: InputDecoration(
+                  hintText: widget.hint,
+                  prefixIcon: _dataInputCubit.gestureDetector(),
+                  contentPadding: EdgeInsets.all(8.0),
+                ),
+                enableSuggestions: false,
+                obscureText: _shouldObscureText,
+                onChanged: (text) {
+                  if (widget.callback is Function) widget.callback(text);
+                },
+                style: textStyle,
               ),
-              enableSuggestions: false,
-              obscureText: _shouldObscureText,
-              onChanged: (text) {
-                if (widget.callback is Function) widget.callback(text);
-              },
-              style: textStyle,
             ),
             onFocusChange: (hasFocus) {
               if (!hasFocus && widget.completion is Function) widget.completion(_textEditingController.text);

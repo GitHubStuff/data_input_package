@@ -1,6 +1,6 @@
 name: data_input_package
 description: General purpose widget for entering passwords and text
-version: 0.0.2
+version: 0.0.4+2
 author: Steven Smith
 
 environment:
@@ -10,12 +10,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  theme_package:
+    path: ../theme_package
   cupertino_icons: ^1.0.0
   equatable: ^1.2.5
   flutter_bloc: ^6.1.0
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-flutter:
+flutter: null

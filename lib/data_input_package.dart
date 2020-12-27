@@ -4,5 +4,6 @@
 
 library data_input_widget;
 
+export 'cubit/data_input_cubit.dart';
 export 'widget/data_input_widget.dart';
 export 'widget/widget_types.dart';

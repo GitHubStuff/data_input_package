@@ -35,7 +35,7 @@ class DataInputCubit extends Cubit<DataInputState> {
     emit(InputReadyState(_obscureState));
   }
 
-  void _clearText() {
+  void clearText() {
     emit(ClearInputState());
   }
 
@@ -69,13 +69,13 @@ class DataInputCubit extends Cubit<DataInputState> {
         Icons.cancel,
         size: 34.0,
       ),
-      onTapDown: (_) => _clearText(),
-      onTapUp: (_) => _clearText(),
+      onTapDown: (_) => clearText(),
+      onTapUp: (_) => clearText(),
       onTapCancel: () => debugPrint('onTapCancel'),
       onPanEnd: (detail) => debugPrint('On Pan End'),
-      onDoubleTap: () => _clearText(),
-      onLongPressStart: (detail) => _clearText(),
-      onLongPressEnd: (detail) => _clearText(),
+      onDoubleTap: () => clearText(),
+      onLongPressStart: (detail) => clearText(),
+      onLongPressEnd: (detail) => clearText(),
     );
   }
 }
