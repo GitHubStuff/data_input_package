@@ -40,7 +40,6 @@ class _DataInputWidget extends ObservingStatefulWidget<DataInputWidget> {
   @override
   void initState() {
     super.initState();
-    Log.M('initState CUBIT HASH: ${widget.dataInputCubit?.hashCode}');
     _dataInputCubit = widget.dataInputCubit ?? DataInputCubit();
   }
 
