@@ -1,6 +1,6 @@
 name: data_input_package
 description: General purpose widget for entering passwords and text
-version: 0.0.4+4
+version: 0.0.4+5
 author: Steven Smith
 
 environment:
